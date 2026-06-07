@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { CiLock } from "react-icons/ci";
+import { useState } from "react";
 const Page = styled.div`
   background: #f0f0f0;
   display: flex;
@@ -72,6 +73,8 @@ const FormTitle = styled.p`
 `;
 
 function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
   return (
     <Page>
       <Form>
@@ -80,10 +83,31 @@ function LoginPage() {
         </Icon>
         <FormTitle>Sistema de Gestão ONG</FormTitle>
         <FormInputText>Endereço de E-mail</FormInputText>
-        <input type="email" />
+        <input
+          required
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          type="email"
+        />
         <FormInputText>Senha</FormInputText>
-        <input type="email" />
-        <button type="submit">Entrar</button>
+        <input
+          required
+          onChange={(e) => setPass(e.target.value)}
+          value={pass}
+          type="email"
+        />
+        <button
+          onClick={() => {
+            if (email === "admin@ong.com" && pass === "123456") {
+              alert("Login  com sucesso!");
+            } else {
+              alert("Usuário ou senha incorretos.");
+            }
+          }}
+          type="submit"
+        >
+          Entrar
+        </button>
       </Form>
     </Page>
   );
